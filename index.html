@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Resource Library — What's in the Bible?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#26332C;
+    --ink-soft:#5B665F;
+    --paper:#F7F3E8;
+    --card:#FFFFFF;
+    --border:#E3DDCC;
+    --green:#3E5A45;
+    --green-soft:#EDF1EB;
+    --core:#A15C39;
+    --core-soft:#F5E9E1;
+    --audio:#3E5A45;
+    --article:#5E6E88;
+    --book:#8A6A46;
+    --focus:#3E5A45;
+    --danger:#A13E3E;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%; scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Serif 4', Georgia, serif;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:60px;
+  }
+  a{color:inherit;}
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible{
+    outline:2px solid var(--focus);
+    outline-offset:2px;
+  }
+  h1,h2,h3{margin:0;}
+
+  .masthead{
+    padding:26px 20px 18px;
+    text-align:center;
+    border-bottom:1px solid var(--border);
+  }
+  .eyebrow{
+    font-family:'Courier Prime', monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--green);
+  }
+  .masthead h1{
+    font-weight:700;
+    font-size:clamp(22px, 6vw, 28px);
+    margin:8px 0 8px;
+    color:var(--ink);
+  }
+  .masthead p{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    max-width:520px;
+    margin:0 auto;
+    line-height:1.55;
+  }
+
+  #statusBanner{
+    display:none;
+    max-width:640px;
+    margin:14px auto 0;
+    padding:10px 14px;
+    border-radius:6px;
+    font-size:13px;
+    text-align:center;
+    line-height:1.5;
+  }
+  #statusBanner.error{background:#F5E1DE; border:1px solid var(--danger); color:var(--danger);}
+  #statusBanner.info{background:var(--core-soft); border:1px solid var(--core); color:var(--core);}
+
+  .control-bar{
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:var(--paper);
+    border-bottom:1px solid var(--border);
+    padding:10px 16px 12px;
+  }
+  .drawer-tabs{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    padding-bottom:8px;
+    scrollbar-width:none;
+  }
+  .drawer-tabs::-webkit-scrollbar{display:none;}
+  .drawer-tab{
+    flex:0 0 auto;
+    font-family:'Courier Prime', monospace;
+    font-size:11.5px;
+    letter-spacing:.02em;
+    text-transform:uppercase;
+    color:var(--green);
+    background:var(--green-soft);
+    border:1px solid transparent;
+    border-radius:14px;
+    padding:7px 13px;
+    white-space:nowrap;
+    text-decoration:none;
+  }
+
+  .filter-row{display:flex; flex-wrap:wrap; gap:6px; margin-top:2px;}
+  .chip-group{display:flex; gap:6px; flex-wrap:wrap;}
+  .chip{
+    font-family:'Courier Prime', monospace;
+    font-size:11px;
+    letter-spacing:.02em;
+    text-transform:uppercase;
+    background:var(--card);
+    border:1px solid var(--border);
+    color:var(--ink-soft);
+    padding:6px 11px;
+    border-radius:14px;
+    cursor:pointer;
+  }
+  .chip[aria-pressed="true"]{background:var(--green); border-color:var(--green); color:#fff;}
+  .search-wrap{margin-top:8px;}
+  .search-wrap input{
+    width:100%;
+    font-family:'Source Serif 4', serif;
+    font-size:15px;
+    padding:9px 12px;
+    border-radius:6px;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--ink);
+  }
+  .search-wrap input::placeholder{color:var(--ink-soft);}
+
+  .result-note{
+    max-width:900px; margin:12px auto 0; padding:0 16px;
+    font-family:'Courier Prime', monospace; font-size:11.5px;
+    color:var(--ink-soft); text-align:center;
+  }
+
+  main{max-width:720px; margin:0 auto; padding:0 16px;}
+
+  .manage{max-width:720px; margin:22px auto 0; padding:0 16px;}
+  .manage > summary{
+    cursor:pointer; list-style:none;
+    font-family:'Courier Prime', monospace;
+    font-size:12.5px; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--green); padding:10px 14px;
+    background:var(--green-soft); border-radius:6px; user-select:none;
+  }
+  .manage > summary::-webkit-details-marker{display:none;}
+  .manage > summary::after{content:" +"; float:right;}
+  .manage[open] > summary::after{content:" –";}
+  .manage-body{padding:16px 4px 4px;}
+  .manage-section{
+    background:var(--card); border:1px solid var(--border);
+    border-radius:8px; padding:16px; margin-bottom:14px;
+  }
+  .manage-section h3{font-size:14.5px; font-weight:700; margin-bottom:4px;}
+  .manage-section .hint{font-size:12.5px; color:var(--ink-soft); margin-bottom:12px; line-height:1.5;}
+  .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  .form-grid .full{grid-column:1 / -1;}
+  .form-grid label{
+    display:block; font-family:'Courier Prime', monospace; font-size:10.5px;
+    letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:4px;
+  }
+  .form-grid input, .form-grid select, .form-grid textarea{
+    width:100%; font-family:'Source Serif 4', serif; font-size:14.5px;
+    padding:8px 9px; border-radius:5px; border:1px solid var(--border); background:#fff; color:var(--ink);
+  }
+  .form-grid textarea{resize:vertical; min-height:44px;}
+  .btn{
+    font-family:'Courier Prime', monospace; font-size:12px; letter-spacing:.03em; text-transform:uppercase;
+    background:var(--green); color:#fff; border:none; border-radius:6px; padding:9px 16px; cursor:pointer;
+  }
+  .btn.secondary{background:transparent; color:var(--green); border:1px solid var(--green);}
+  .btn-row{display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;}
+  .status-msg{margin-top:9px; font-size:12.5px; color:var(--green); min-height:16px;}
+  .status-msg.error{color:var(--danger);}
+  .import-example{
+    background:var(--green-soft); border-radius:5px; padding:10px 12px;
+    font-family:'Courier Prime', monospace; font-size:10.5px; line-height:1.55;
+    color:var(--ink-soft); white-space:pre-wrap; overflow-x:auto; margin-bottom:10px;
+  }
+  .save-panel{
+    background:var(--core-soft); border:1px solid var(--core);
+    border-radius:8px; padding:16px; margin-bottom:14px;
+  }
+  .save-panel h3{color:var(--core); font-size:14.5px; margin-bottom:4px;}
+  .save-panel .hint{font-size:12.5px; color:var(--ink); margin-bottom:10px; line-height:1.55;}
+  .save-panel ol{margin:0 0 10px 18px; padding:0; font-size:12.5px; color:var(--ink); line-height:1.7;}
+  .unsaved-dot{
+    display:inline-block; width:7px; height:7px; border-radius:50%;
+    background:var(--core); margin-right:6px; vertical-align:middle;
+  }
+
+  .drawer-header{
+    margin-top:30px; display:flex; align-items:baseline; justify-content:space-between; gap:10px;
+    border-bottom:1px solid var(--border); padding-bottom:10px;
+  }
+  .drawer-header-text .kicker{
+    font-family:'Courier Prime', monospace; font-size:11px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--green);
+  }
+  .drawer-header-text h2{font-weight:700; font-size:clamp(19px,5vw,23px); margin-top:3px; color:var(--ink);}
+  .accession{flex:0 0 auto; font-family:'Courier Prime', monospace; font-size:10.5px; color:var(--ink-soft); text-align:right; line-height:1.4;}
+
+  .subgroup-label{
+    font-family:'Courier Prime', monospace; font-size:11px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-soft); margin:20px 0 8px;
+  }
+
+  .card{
+    position:relative; display:block; text-decoration:none;
+    background:var(--card); border:1px solid var(--border); border-left-width:4px;
+    border-radius:6px; padding:13px 14px; margin-bottom:9px;
+  }
+  .card[data-type="Audio"]{border-left-color:var(--audio);}
+  .card[data-type="Article"]{border-left-color:var(--article);}
+  .card[data-type="Book"]{border-left-color:var(--book);}
+  .card:active{background:#FAF8F1;}
+  .card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px;}
+  .card-title{font-weight:600; font-size:15.5px; line-height:1.4; color:var(--ink);}
+  .card-title .arrow{color:var(--ink-soft); font-size:13px; margin-left:3px;}
+  .priority-pill{
+    flex:0 0 auto; font-family:'Courier Prime', monospace; font-size:10px;
+    letter-spacing:.03em; text-transform:uppercase; border-radius:4px; padding:2px 7px; white-space:nowrap;
+  }
+  .priority-pill.core{background:var(--core-soft); color:var(--core);}
+  .priority-pill.supp{background:transparent; color:var(--ink-soft); border:1px solid var(--border);}
+  .card-meta{margin-top:6px; font-family:'Courier Prime', monospace; font-size:11px; color:var(--ink-soft); line-height:1.7;}
+  .card-meta .sep{margin:0 5px; opacity:.5;}
+  .card-subpoint{margin-top:7px; font-size:12.5px; color:var(--ink-soft); font-style:italic; line-height:1.45;}
+  .drawer-empty{font-family:'Courier Prime', monospace; font-size:12.5px; color:var(--ink-soft); padding:16px 4px 26px; text-align:center;}
+
+  footer{
+    max-width:720px; margin:36px auto 0; padding:18px 16px 4px;
+    border-top:1px solid var(--border); font-size:12px; color:var(--ink-soft); text-align:center; line-height:1.6;
+  }
+  .loading-msg, .fetch-error{
+    max-width:640px; margin:60px auto; padding:0 20px; text-align:center; color:var(--ink-soft); font-size:14px; line-height:1.6;
+  }
+  .fetch-error{color:var(--danger);}
+
+  @media (max-width:480px){ .form-grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="eyebrow">Sunday School Prep</div>
+  <h1>Biblical Theology Resource Library</h1>
+  <p>Audio, articles, and books for "What's in the Bible?" — tap a card to open it. Data loads from <code>data.json</code> in this same folder.</p>
+</header>
+
+<div id="statusBanner"></div>
+
+<div id="loadingMsg" class="loading-msg">Loading data.json&hellip;</div>
+
+<div id="appRoot" style="display:none;">
+  <div class="control-bar">
+    <nav class="drawer-tabs" id="drawerTabs" aria-label="Jump to lesson"></nav>
+    <div class="filter-row">
+      <div class="chip-group" id="typeChips" aria-label="Filter by resource type"></div>
+      <div class="chip-group" id="priorityChips" aria-label="Filter by priority"></div>
+    </div>
+    <div class="search-wrap">
+      <input type="search" id="searchBox" placeholder="Search by title, author, or speaker&hellip;" autocomplete="off">
+    </div>
+  </div>
+
+  <p class="result-note" id="resultNote"></p>
+
+  <main id="main"></main>
+
+  <details class="manage" id="managePanel">
+    <summary>Add, import &amp; save changes</summary>
+    <div class="manage-body">
+
+      <div class="save-panel">
+        <h3><span class="unsaved-dot" id="unsavedDot" style="display:none;"></span>Save your changes</h3>
+        <p class="hint">Anything added below only lives in this browser tab until you save it back to <code>data.json</code>:</p>
+        <ol>
+          <li>Tap <strong>Download updated data.json</strong>.</li>
+          <li>Replace the old <code>data.json</code> wherever this page is hosted (e.g. upload the new file over the old one on GitHub).</li>
+          <li>Everyone using the link now sees the update next time they load the page.</li>
+        </ol>
+        <div class="btn-row">
+          <button type="button" class="btn" id="downloadBtn">Download updated data.json</button>
+        </div>
+        <div class="status-msg" id="downloadStatus"></div>
+      </div>
+
+      <div class="manage-section">
+        <h3>Add a resource</h3>
+        <p class="hint">Add one item by hand — for you or your co-leader to use directly on this page.</p>
+        <form id="addResourceForm">
+          <div class="form-grid">
+            <div class="full">
+              <label for="arSection">Lesson</label>
+              <select id="arSection" required></select>
+            </div>
+            <div>
+              <label for="arType">Type</label>
+              <select id="arType" required>
+                <option value="Audio">Audio</option>
+                <option value="Article">Article</option>
+                <option value="Book">Book</option>
+              </select>
+            </div>
+            <div>
+              <label for="arSubtype">Subtype (optional)</label>
+              <input id="arSubtype" type="text" placeholder="Podcast, Sermon, Lecture&hellip;">
+            </div>
+            <div class="full">
+              <label for="arTitle">Title</label>
+              <input id="arTitle" type="text" required>
+            </div>
+            <div>
+              <label for="arAuthor">Author / Speaker</label>
+              <input id="arAuthor" type="text">
+            </div>
+            <div>
+              <label for="arTradition">Tradition</label>
+              <select id="arTradition">
+                <option>Reformed</option>
+                <option>Anglican</option>
+                <option>Anabaptist/Mennonite</option>
+                <option>Patristic</option>
+                <option>Roman Catholic</option>
+                <option>Lutheran</option>
+                <option>Academic/Critical</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div>
+              <label for="arLength">Length</label>
+              <input id="arLength" type="text" placeholder="45 min, 1 chapter&hellip;">
+            </div>
+            <div>
+              <label for="arAccess">Access</label>
+              <select id="arAccess">
+                <option>Free</option>
+                <option>Paid</option>
+                <option>Library/Subscription</option>
+              </select>
+            </div>
+            <div class="full">
+              <label for="arLink">Link</label>
+              <input id="arLink" type="url" required placeholder="https://&hellip;">
+            </div>
+            <div>
+              <label for="arPriority">Priority</label>
+              <select id="arPriority">
+                <option>Core</option>
+                <option>Supplementary</option>
+              </select>
+            </div>
+            <div class="full">
+              <label for="arSubpoint">Covers (subpoint)</label>
+              <textarea id="arSubpoint" placeholder="Which subpoint this resource speaks to&hellip;"></textarea>
+            </div>
+          </div>
+          <div class="btn-row"><button type="submit" class="btn">Add resource</button></div>
+          <div class="status-msg" id="arStatus"></div>
+        </form>
+      </div>
+
+      <div class="manage-section">
+        <h3>Add a new lesson</h3>
+        <p class="hint">Start a new drawer for a lesson topic that hasn't been catalogued yet.</p>
+        <form id="addSectionForm">
+          <div class="form-grid">
+            <div class="full">
+              <label for="asUnit">Lesson name</label>
+              <input id="asUnit" type="text" required placeholder="e.g. Abraham">
+            </div>
+            <div class="full">
+              <label for="asLabel">Subtitle (optional)</label>
+              <input id="asLabel" type="text" placeholder="e.g. Genesis 12-25">
+            </div>
+          </div>
+          <div class="btn-row"><button type="submit" class="btn">Add lesson</button></div>
+          <div class="status-msg" id="asStatus"></div>
+        </form>
+      </div>
+
+      <div class="manage-section">
+        <h3>Import from a research pull</h3>
+        <p class="hint">Paste a JSON block (Claude can produce this directly after a research pull) to bulk-add resources to an existing or new lesson.</p>
+        <div class="import-example" id="importExample"></div>
+        <div class="form-grid">
+          <div class="full">
+            <label for="importText">Paste JSON here</label>
+            <textarea id="importText" style="min-height:110px;" placeholder="Paste the JSON block here&hellip;"></textarea>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn" id="importBtn">Import</button>
+          <button type="button" class="btn secondary" id="copyTemplateBtn">Copy template</button>
+        </div>
+        <div class="status-msg" id="importStatus"></div>
+      </div>
+
+    </div>
+  </details>
+
+  <footer>
+    Built from the Sunday School Master Resource Library spreadsheet — a drive-friendly companion to it, not a replacement.<br>
+    This page reads from <code>data.json</code> on load. Changes save only when you download the updated file and re-upload it.
+  </footer>
+</div>
+
+<script>
+/* ============ STATE ============ */
+let state = {sections: [], resourcesBySection: {}};
+let hasUnsavedChanges = false;
+let activeType = "All";
+let activePriority = "All";
+let searchTerm = "";
+
+const typeOrder = ["Audio","Article","Book"];
+const typeLabels = {Audio:"Audio", Article:"Articles", Book:"Books & Chapters"};
+
+function escapeHtml(s){
+  return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function slugify(s){
+  return String(s).toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'') || 'section';
+}
+function uniqueSlug(base){
+  let slug = slugify(base);
+  let n = 2;
+  const existing = new Set(state.sections.map(s => s.id));
+  while(existing.has(slug)){ slug = slugify(base) + '-' + n; n++; }
+  return slug;
+}
+function nextAccessionNo(){ return String(state.sections.length + 1).padStart(3,'0'); }
+function currentDateLabel(){ return new Date().toLocaleString('en-US', {month:'short', year:'numeric'}); }
+
+function markUnsaved(){
+  hasUnsavedChanges = true;
+  document.getElementById('unsavedDot').style.display = 'inline-block';
+}
+
+/* ============ LOAD FROM data.json ============ */
+async function loadData(){
+  try{
+    const res = await fetch('./data.json', {cache:'no-store'});
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+    const json = await res.json();
+    state.sections = json.sections || [];
+    state.resourcesBySection = json.resources || {};
+    document.getElementById('loadingMsg').style.display = 'none';
+    document.getElementById('appRoot').style.display = 'block';
+    renderAll();
+  }catch(e){
+    document.getElementById('loadingMsg').innerHTML =
+      `<div class="fetch-error">
+        <strong>Couldn't load data.json.</strong><br><br>
+        This usually means the page was opened as a local file instead of through a real https:// link —
+        browsers block that for security. Make sure <code>index.html</code> and <code>data.json</code> are
+        hosted together (e.g. on GitHub Pages) and open the hosted link, not a file saved to your phone.
+        <br><br><span style="font-family:'Courier Prime',monospace; font-size:11px;">${escapeHtml(e.message)}</span>
+      </div>`;
+  }
+}
+
+/* ============ RENDER ============ */
+const main = document.getElementById('main');
+const drawerTabs = document.getElementById('drawerTabs');
+const resultNote = document.getElementById('resultNote');
+
+function cardHtml(r){
+  const pillClass = r.priority === "Core" ? "priority-pill core" : "priority-pill supp";
+  const pillText = r.priority === "Core" ? "Core" : "Optional";
+  return `
+  <a class="card" href="${escapeHtml(r.link)}" target="_blank" rel="noopener"
+     data-type="${escapeHtml(r.type)}" data-priority="${escapeHtml(r.priority)}"
+     data-search="${escapeHtml((r.title + ' ' + r.author).toLowerCase())}">
+    <div class="card-top">
+      <div class="card-title">${escapeHtml(r.title)}<span class="arrow">&#8599;</span></div>
+      <div class="${pillClass}">${pillText}</div>
+    </div>
+    <div class="card-meta">${escapeHtml(r.author || '—')}<span class="sep">&middot;</span>${escapeHtml(r.tradition || '—')}<span class="sep">&middot;</span>${escapeHtml(r.length || '—')}<span class="sep">&middot;</span>${escapeHtml(r.access || '—')}</div>
+    ${r.subpoint ? `<div class="card-subpoint">Covers: ${escapeHtml(r.subpoint)}</div>` : ``}
+  </a>`;
+}
+function drawerBodyHtml(sectionId){
+  const items = state.resourcesBySection[sectionId] || [];
+  let groups = "";
+  typeOrder.forEach(t => {
+    const group = items.filter(r => r.type === t);
+    if(group.length === 0) return;
+    groups += `<div class="subgroup-label">${typeLabels[t]}</div>` + group.map(cardHtml).join("");
+  });
+  if(!groups) groups = `<div class="drawer-empty">No resources yet — add one below.</div>`;
+  return groups;
+}
+function drawerHtml(d){
+  return `
+  <section class="drawer" id="${d.id}">
+    <div class="drawer-header">
+      <div class="drawer-header-text">
+        <div class="kicker">${escapeHtml(d.label || '')}</div>
+        <h2>${escapeHtml(d.unit)}</h2>
+      </div>
+      <div class="accession">No. ${escapeHtml(d.accessionNo)}<br>${escapeHtml(d.dateAdded)}</div>
+    </div>
+    <div class="drawer-body" id="body-${d.id}">${drawerBodyHtml(d.id)}</div>
+  </section>`;
+}
+function renderAll(){
+  main.innerHTML = state.sections.map(drawerHtml).join("");
+  drawerTabs.innerHTML = state.sections.map(d => `<a class="drawer-tab" href="#${d.id}">${escapeHtml(d.unit)}</a>`).join("");
+  populateSectionSelect();
+  applyFilters();
+}
+function rerenderDrawer(sectionId){
+  const body = document.getElementById('body-' + sectionId);
+  if(body) body.innerHTML = drawerBodyHtml(sectionId);
+  applyFilters();
+}
+function populateSectionSelect(){
+  const sel = document.getElementById('arSection');
+  sel.innerHTML = state.sections.map(s => `<option value="${escapeHtml(s.id)}">${escapeHtml(s.unit)}</option>`).join("");
+}
+
+/* ============ FILTERS ============ */
+function buildChips(container, options, current, onSelect){
+  container.innerHTML = options.map(opt => `<button type="button" class="chip" data-val="${opt}" aria-pressed="${opt===current}">${opt}</button>`).join("");
+  container.querySelectorAll('.chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      onSelect(btn.dataset.val);
+      container.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', b === btn));
+      applyFilters();
+    });
+  });
+}
+function applyFilters(){
+  const cards = document.querySelectorAll('.card');
+  let visibleCount = 0;
+  cards.forEach(card => {
+    const matchesType = activeType === "All" || card.dataset.type === activeType;
+    const matchesPriority = activePriority === "All" || card.dataset.priority === activePriority;
+    const matchesSearch = !searchTerm || card.dataset.search.includes(searchTerm);
+    const visible = matchesType && matchesPriority && matchesSearch;
+    card.style.display = visible ? "block" : "none";
+    if(visible) visibleCount++;
+  });
+  document.querySelectorAll('.subgroup-label').forEach(label => {
+    let el = label.nextElementSibling, anyVisible = false;
+    while(el && el.classList.contains('card')){
+      if(el.style.display !== "none") anyVisible = true;
+      el = el.nextElementSibling;
+    }
+    label.style.display = anyVisible ? "block" : "none";
+  });
+  resultNote.textContent = visibleCount === 1 ? "1 resource shown" : `${visibleCount} resources shown`;
+}
+
+/* ============ ADD RESOURCE ============ */
+document.getElementById('addResourceForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const sectionId = document.getElementById('arSection').value;
+  const resource = {
+    type: document.getElementById('arType').value,
+    subtype: document.getElementById('arSubtype').value.trim(),
+    title: document.getElementById('arTitle').value.trim(),
+    author: document.getElementById('arAuthor').value.trim(),
+    tradition: document.getElementById('arTradition').value,
+    length: document.getElementById('arLength').value.trim(),
+    access: document.getElementById('arAccess').value,
+    link: document.getElementById('arLink').value.trim(),
+    priority: document.getElementById('arPriority').value,
+    subpoint: document.getElementById('arSubpoint').value.trim()
+  };
+  const statusEl = document.getElementById('arStatus');
+  if(!resource.title || !resource.link || !sectionId){
+    statusEl.textContent = "Title and link are required.";
+    statusEl.className = "status-msg error";
+    return;
+  }
+  state.resourcesBySection[sectionId] = state.resourcesBySection[sectionId] || [];
+  state.resourcesBySection[sectionId].push(resource);
+  rerenderDrawer(sectionId);
+  markUnsaved();
+  statusEl.textContent = `Added to ${state.sections.find(s=>s.id===sectionId).unit}. Remember to download & save data.json.`;
+  statusEl.className = "status-msg";
+  e.target.reset();
+});
+
+/* ============ ADD SECTION ============ */
+document.getElementById('addSectionForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const unit = document.getElementById('asUnit').value.trim();
+  const label = document.getElementById('asLabel').value.trim();
+  const statusEl = document.getElementById('asStatus');
+  if(!unit){
+    statusEl.textContent = "Lesson name is required.";
+    statusEl.className = "status-msg error";
+    return;
+  }
+  if(state.sections.find(s => s.unit.toLowerCase() === unit.toLowerCase())){
+    statusEl.textContent = `"${unit}" already exists.`;
+    statusEl.className = "status-msg error";
+    return;
+  }
+  const id = uniqueSlug(unit);
+  state.sections.push({id, unit, label, accessionNo: nextAccessionNo(), dateAdded: currentDateLabel()});
+  state.resourcesBySection[id] = [];
+  renderAll();
+  markUnsaved();
+  statusEl.textContent = `"${unit}" added. Remember to download & save data.json.`;
+  statusEl.className = "status-msg";
+  e.target.reset();
+});
+
+/* ============ IMPORT ============ */
+const importTemplate = {
+  section: "Abraham",
+  resources: [
+    {type:"Audio", subtype:"Podcast", title:"Example episode title", author:"Speaker name", tradition:"Reformed", length:"45 min", access:"Free", link:"https://example.com/episode", priority:"Core", subpoint:"Which subpoint this covers"}
+  ]
+};
+document.getElementById('importExample').textContent = JSON.stringify(importTemplate, null, 2);
+
+document.getElementById('copyTemplateBtn').addEventListener('click', () => {
+  const text = JSON.stringify(importTemplate, null, 2);
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(() => {
+      const el = document.getElementById('importStatus');
+      el.textContent = "Template copied.";
+      el.className = "status-msg";
+    }).catch(() => fallbackCopy(text));
+  } else {
+    fallbackCopy(text);
+  }
+});
+function fallbackCopy(text){
+  document.getElementById('importText').value = text;
+  const el = document.getElementById('importStatus');
+  el.textContent = "Couldn't access the clipboard — template pasted into the box instead.";
+  el.className = "status-msg";
+}
+
+document.getElementById('importBtn').addEventListener('click', () => {
+  const statusEl = document.getElementById('importStatus');
+  const raw = document.getElementById('importText').value.trim();
+  if(!raw){
+    statusEl.textContent = "Paste a JSON block first.";
+    statusEl.className = "status-msg error";
+    return;
+  }
+  let parsed;
+  try{ parsed = JSON.parse(raw); }
+  catch(e){
+    statusEl.textContent = "That doesn't look like valid JSON — check for a missing comma or bracket.";
+    statusEl.className = "status-msg error";
+    return;
+  }
+  if(Array.isArray(parsed)){
+    statusEl.textContent = "This format needs a \"section\" name — see the template above.";
+    statusEl.className = "status-msg error";
+    return;
+  }
+  const sectionName = parsed.section;
+  const resourcesToAdd = parsed.resources;
+  if(!sectionName || !Array.isArray(resourcesToAdd) || resourcesToAdd.length === 0){
+    statusEl.textContent = "JSON needs a \"section\" name and a non-empty \"resources\" array.";
+    statusEl.className = "status-msg error";
+    return;
+  }
+
+  let section = state.sections.find(s => s.unit.toLowerCase() === sectionName.toLowerCase());
+  let isNewSection = false;
+  if(!section){
+    const id = uniqueSlug(sectionName);
+    section = {id, unit: sectionName, label:"", accessionNo: nextAccessionNo(), dateAdded: currentDateLabel()};
+    state.sections.push(section);
+    state.resourcesBySection[section.id] = [];
+    isNewSection = true;
+  }
+
+  let added = 0, skipped = 0;
+  resourcesToAdd.forEach(r => {
+    if(!r || !r.title || !r.link){ skipped++; return; }
+    state.resourcesBySection[section.id].push({
+      type: r.type || "Article",
+      subtype: r.subtype || "",
+      title: r.title,
+      author: r.author || "",
+      tradition: r.tradition || "Other",
+      length: r.length || "",
+      access: r.access || "",
+      link: r.link,
+      priority: r.priority === "Core" ? "Core" : "Supplementary",
+      subpoint: r.subpoint || ""
+    });
+    added++;
+  });
+
+  if(isNewSection) renderAll(); else { rerenderDrawer(section.id); populateSectionSelect(); }
+  markUnsaved();
+  statusEl.textContent = `Imported ${added} resource${added===1?'':'s'} into "${section.unit}"${skipped ? ` (${skipped} skipped — missing title or link)` : ''}. Remember to download & save data.json.`;
+  statusEl.className = "status-msg";
+  document.getElementById('importText').value = "";
+});
+
+/* ============ DOWNLOAD data.json ============ */
+document.getElementById('downloadBtn').addEventListener('click', () => {
+  const out = {sections: state.sections, resources: state.resourcesBySection};
+  const blob = new Blob([JSON.stringify(out, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'data.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  hasUnsavedChanges = false;
+  document.getElementById('unsavedDot').style.display = 'none';
+  const el = document.getElementById('downloadStatus');
+  el.textContent = "Downloaded. Now replace data.json wherever this page is hosted.";
+  el.className = "status-msg";
+});
+
+/* ============ INIT ============ */
+buildChips(document.getElementById('typeChips'), ["All","Audio","Article","Book"], activeType, v => activeType = v);
+buildChips(document.getElementById('priorityChips'), ["All","Core","Supplementary"], activePriority, v => activePriority = v);
+document.getElementById('searchBox').addEventListener('input', e => { searchTerm = e.target.value.trim().toLowerCase(); applyFilters(); });
+
+window.addEventListener('beforeunload', (e) => {
+  if(hasUnsavedChanges){ e.preventDefault(); e.returnValue = ''; }
+});
+
+loadData();
+</script>
+</body>
+</html>
