@@ -77,59 +77,22 @@
     font-size:13px;
     text-align:center;
     line-height:1.5;
-  }
-  #statusBanner.error{background:#F5E1DE; border:1px solid var(--danger); color:var(--danger);}
-  #statusBanner.info{background:var(--core-soft); border:1px solid var(--core); color:var(--core);}
-
-  .control-bar{
-    position:sticky;
-    top:0;
-    z-index:20;
-    background:var(--paper);
-    border-bottom:1px solid var(--border);
-    padding:10px 16px 12px;
-  }
-  .drawer-tabs{
-    display:flex;
-    gap:8px;
-    overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-    padding-bottom:8px;
-    scrollbar-width:none;
-  }
-  .drawer-tabs::-webkit-scrollbar{display:none;}
-  .drawer-tab{
-    flex:0 0 auto;
-    font-family:'Courier Prime', monospace;
-    font-size:11.5px;
-    letter-spacing:.02em;
-    text-transform:uppercase;
-    color:var(--green);
-    background:var(--green-soft);
-    border:1px solid transparent;
-    border-radius:14px;
-    padding:7px 13px;
-    white-space:nowrap;
-    text-decoration:none;
+    background:#F5E1DE; border:1px solid var(--danger); color:var(--danger);
   }
 
-  .filter-row{display:flex; flex-wrap:wrap; gap:6px; margin-top:2px; align-items:center;}
-  .chip-group{display:flex; gap:6px; flex-wrap:wrap;}
-  .chip{
-    font-family:'Courier Prime', monospace;
-    font-size:11px;
-    letter-spacing:.02em;
-    text-transform:uppercase;
-    background:var(--card);
-    border:1px solid var(--border);
-    color:var(--ink-soft);
-    padding:6px 11px;
-    border-radius:14px;
-    cursor:pointer;
+  .who-bar{
+    max-width:720px; margin:14px auto 0; padding:0 16px;
+    display:flex; gap:8px; align-items:center;
   }
-  .chip[aria-pressed="true"]{background:var(--green); border-color:var(--green); color:#fff;}
+  .who-bar label{
+    font-family:'Courier Prime', monospace; font-size:10.5px; letter-spacing:.04em;
+    text-transform:uppercase; color:var(--ink-soft); white-space:nowrap;
+  }
+  .who-bar input{
+    flex:1; min-width:0; font-family:'Source Serif 4', serif; font-size:14.5px;
+    padding:8px 10px; border-radius:6px; border:1px solid var(--border); background:#fff; color:var(--ink);
+  }
   .refresh-btn{
-    margin-left:auto;
     font-family:'Courier Prime', monospace;
     font-size:11px;
     letter-spacing:.02em;
@@ -137,99 +100,83 @@
     background:transparent;
     border:1px solid var(--border);
     color:var(--ink-soft);
-    padding:6px 11px;
+    padding:8px 12px;
     border-radius:14px;
     cursor:pointer;
-  }
-  .search-wrap{margin-top:8px;}
-  .search-wrap input{
-    width:100%;
-    font-family:'Source Serif 4', serif;
-    font-size:15px;
-    padding:9px 12px;
-    border-radius:6px;
-    border:1px solid var(--border);
-    background:var(--card);
-    color:var(--ink);
-  }
-  .search-wrap input::placeholder{color:var(--ink-soft);}
-
-  .result-note{
-    max-width:900px; margin:12px auto 0; padding:0 16px;
-    font-family:'Courier Prime', monospace; font-size:11.5px;
-    color:var(--ink-soft); text-align:center;
+    white-space:nowrap;
   }
 
   main{max-width:720px; margin:0 auto; padding:0 16px;}
 
-  .manage{max-width:720px; margin:22px auto 0; padding:0 16px;}
-  .manage > summary{
-    cursor:pointer; list-style:none;
-    font-family:'Courier Prime', monospace;
-    font-size:12.5px; letter-spacing:.05em; text-transform:uppercase;
-    color:var(--green); padding:10px 14px;
-    background:var(--green-soft); border-radius:6px; user-select:none;
-  }
-  .manage > summary::-webkit-details-marker{display:none;}
-  .manage > summary::after{content:" +"; float:right;}
-  .manage[open] > summary::after{content:" –";}
-  .manage-body{padding:16px 4px 4px;}
-  .manage-section{
-    background:var(--card); border:1px solid var(--border);
-    border-radius:8px; padding:16px; margin-bottom:14px;
-  }
-  .manage-section h3{font-size:14.5px; font-weight:700; margin-bottom:4px;}
-  .manage-section .hint{font-size:12.5px; color:var(--ink-soft); margin-bottom:12px; line-height:1.5;}
-  .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
-  .form-grid .full{grid-column:1 / -1;}
-  .form-grid label{
-    display:block; font-family:'Courier Prime', monospace; font-size:10.5px;
-    letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:4px;
-  }
-  .form-grid input, .form-grid select, .form-grid textarea{
-    width:100%; font-family:'Source Serif 4', serif; font-size:14.5px;
-    padding:8px 9px; border-radius:5px; border:1px solid var(--border); background:#fff; color:var(--ink);
-  }
-  .form-grid textarea{resize:vertical; min-height:44px;}
-  .btn{
-    font-family:'Courier Prime', monospace; font-size:12px; letter-spacing:.03em; text-transform:uppercase;
-    background:var(--green); color:#fff; border:none; border-radius:6px; padding:9px 16px; cursor:pointer;
-  }
-  .btn.secondary{background:transparent; color:var(--green); border:1px solid var(--green);}
-  .btn:disabled{opacity:.6; cursor:default;}
-  .btn-row{display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;}
-  .status-msg{margin-top:9px; font-size:12.5px; color:var(--green); min-height:16px;}
-  .status-msg.error{color:var(--danger);}
-  .import-example{
-    background:var(--green-soft); border-radius:5px; padding:10px 12px;
-    font-family:'Courier Prime', monospace; font-size:10.5px; line-height:1.55;
-    color:var(--ink-soft); white-space:pre-wrap; overflow-x:auto; margin-bottom:10px;
-  }
-
-  .drawer-header{
-    margin-top:30px; display:flex; align-items:baseline; justify-content:space-between; gap:10px;
-    border-bottom:1px solid var(--border); padding-bottom:10px;
-  }
-  .drawer-header-text .kicker{
+  /* ----- home: topic list ----- */
+  .home-head{margin-top:26px; padding-bottom:8px;}
+  .kicker{
     font-family:'Courier Prime', monospace; font-size:11px; letter-spacing:.1em;
     text-transform:uppercase; color:var(--green);
   }
-  .drawer-header-text h2{font-weight:700; font-size:clamp(19px,5vw,23px); margin-top:3px; color:var(--ink);}
-  .accession{flex:0 0 auto; font-family:'Courier Prime', monospace; font-size:10.5px; color:var(--ink-soft); text-align:right; line-height:1.4;}
+  .home-head h2, .topic-head h2{font-weight:700; font-size:clamp(20px,5.5vw,25px); margin-top:3px; color:var(--ink);}
+  .home-head p{margin:6px 0 0; font-size:13.5px; color:var(--ink-soft); line-height:1.5;}
+  .topic-card{
+    display:block; text-decoration:none; color:inherit;
+    background:var(--card); border:1px solid var(--border); border-left:4px solid var(--green);
+    border-radius:6px; padding:14px 14px 12px; margin-top:10px;
+  }
+  .topic-card:active{opacity:.85;}
+  .topic-card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px;}
+  .topic-name{font-weight:700; font-size:17px; line-height:1.3;}
+  .topic-sub{margin-top:2px; font-size:13px; color:var(--ink-soft);}
+  .chev{color:var(--ink-soft); font-size:24px; line-height:1;}
+  .topic-meta{margin-top:8px; font-family:'Courier Prime', monospace; font-size:11px; color:var(--ink-soft);}
+  .bar{margin-top:8px; height:5px; background:var(--green-soft); border-radius:3px; overflow:hidden;}
+  .bar-fill{height:100%; background:var(--green);}
+  .empty-note{
+    font-family:'Courier Prime', monospace; font-size:12.5px; color:var(--ink-soft);
+    padding:22px 4px; text-align:center; line-height:1.6;
+  }
 
+  /* ----- topic view ----- */
+  .topic-head{margin-top:20px;}
+  .back-link{
+    display:inline-block; font-family:'Courier Prime', monospace; font-size:12px; letter-spacing:.04em;
+    text-transform:uppercase; color:var(--green); text-decoration:none; padding:8px 0;
+  }
+  .control-bar{
+    position:sticky; top:0; z-index:20;
+    background:var(--paper); border-bottom:1px solid var(--border);
+    margin:12px -16px 0; padding:10px 16px 12px;
+  }
+  .filter-row{display:flex; flex-wrap:wrap; gap:6px; align-items:center;}
+  .chip-group{display:flex; gap:6px; flex-wrap:wrap;}
+  .chip{
+    font-family:'Courier Prime', monospace; font-size:11px; letter-spacing:.02em; text-transform:uppercase;
+    background:var(--card); border:1px solid var(--border); color:var(--ink-soft);
+    padding:7px 11px; border-radius:14px; cursor:pointer;
+  }
+  .chip[aria-pressed="true"]{background:var(--green); border-color:var(--green); color:#fff;}
+  .search-wrap{margin-top:8px;}
+  .search-wrap input{
+    width:100%; font-family:'Source Serif 4', serif; font-size:15px;
+    padding:9px 12px; border-radius:6px; border:1px solid var(--border); background:var(--card); color:var(--ink);
+  }
+  .search-wrap input::placeholder{color:var(--ink-soft);}
+  .result-note{
+    margin:12px 0 0;
+    font-family:'Courier Prime', monospace; font-size:11.5px; color:var(--ink-soft); text-align:center;
+  }
   .subgroup-label{
     font-family:'Courier Prime', monospace; font-size:11px; letter-spacing:.1em;
     text-transform:uppercase; color:var(--ink-soft); margin:20px 0 8px;
   }
 
   .card{
-    position:relative;
     background:var(--card); border:1px solid var(--border); border-left-width:4px;
     border-radius:6px; padding:13px 14px; margin-bottom:9px;
   }
   .card[data-type="Audio"]{border-left-color:var(--audio);}
   .card[data-type="Article"]{border-left-color:var(--article);}
   .card[data-type="Book"]{border-left-color:var(--book);}
+  .card.done{background:#F6F9F5;}
+  .card.done .card-title{color:var(--ink-soft);}
   .card-link{display:block; text-decoration:none; color:inherit;}
   .card-link:active{opacity:.8;}
   .card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px;}
@@ -246,16 +193,65 @@
   .card-subpoint{margin-top:7px; font-size:12.5px; color:var(--ink-soft); font-style:italic; line-height:1.45;}
   .card-footer{
     display:flex; align-items:center; justify-content:space-between; gap:10px;
-    margin-top:9px; padding-top:8px; border-top:1px solid var(--border);
+    margin-top:9px; padding-top:6px; border-top:1px solid var(--border);
   }
-  .star-row{display:flex; gap:1px;}
+  .star-row{display:flex;}
   .star{
-    background:none; border:none; padding:2px; font-size:17px; line-height:1;
+    background:none; border:none; padding:7px 3px; font-size:21px; line-height:1;
     color:var(--border); cursor:pointer;
   }
   .star.filled{color:var(--star);}
-  .added-by{font-family:'Courier Prime', monospace; font-size:10.5px; color:var(--ink-soft); white-space:nowrap;}
-  .drawer-empty{font-family:'Courier Prime', monospace; font-size:12.5px; color:var(--ink-soft); padding:16px 4px 26px; text-align:center;}
+  .done-btn{
+    font-family:'Courier Prime', monospace; font-size:11px; letter-spacing:.03em; text-transform:uppercase;
+    background:transparent; color:var(--green); border:1px solid var(--green);
+    border-radius:14px; padding:8px 13px; cursor:pointer; white-space:nowrap;
+  }
+  .done-btn.on{background:var(--green); color:#fff;}
+  .added-by{font-family:'Courier Prime', monospace; font-size:10.5px; color:var(--ink-soft); margin-top:2px;}
+
+  /* ----- add form ----- */
+  .manage{max-width:720px; margin:26px auto 0; padding:0 16px;}
+  .manage > summary{
+    cursor:pointer; list-style:none;
+    font-family:'Courier Prime', monospace;
+    font-size:12.5px; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--green); padding:12px 14px;
+    background:var(--green-soft); border-radius:6px; user-select:none;
+  }
+  .manage > summary::-webkit-details-marker{display:none;}
+  .manage > summary::after{content:" +"; float:right;}
+  .manage[open] > summary::after{content:" –";}
+  .manage-body{padding:16px 0 4px;}
+  .manage-section{
+    background:var(--card); border:1px solid var(--border);
+    border-radius:8px; padding:16px; margin-bottom:14px;
+  }
+  .manage-section h3{font-size:14.5px; font-weight:700; margin-bottom:4px;}
+  .manage-section .hint{font-size:12.5px; color:var(--ink-soft); margin-bottom:12px; line-height:1.5;}
+  .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  .form-grid .full{grid-column:1 / -1;}
+  .form-grid label{
+    display:block; font-family:'Courier Prime', monospace; font-size:10.5px;
+    letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:4px;
+  }
+  .form-grid input, .form-grid select, .form-grid textarea{
+    width:100%; font-family:'Source Serif 4', serif; font-size:15px;
+    padding:9px 10px; border-radius:5px; border:1px solid var(--border); background:#fff; color:var(--ink);
+  }
+  .form-grid textarea{resize:vertical; min-height:44px;}
+  .new-topic-box{
+    background:var(--green-soft); border-radius:6px; padding:12px; display:none;
+    grid-template-columns:1fr; gap:10px;
+  }
+  .new-topic-box.show{display:grid;}
+  .btn{
+    font-family:'Courier Prime', monospace; font-size:12px; letter-spacing:.03em; text-transform:uppercase;
+    background:var(--green); color:#fff; border:none; border-radius:6px; padding:11px 18px; cursor:pointer;
+  }
+  .btn:disabled{opacity:.6; cursor:default;}
+  .btn-row{display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;}
+  .status-msg{margin-top:9px; font-size:12.5px; color:var(--green); min-height:16px;}
+  .status-msg.error{color:var(--danger);}
 
   footer{
     max-width:720px; margin:36px auto 0; padding:18px 16px 4px;
@@ -274,7 +270,7 @@
 <header class="masthead">
   <div class="eyebrow">Sunday School Prep</div>
   <h1>Biblical Theology Resource Library</h1>
-  <p>Audio, articles, and books for "What's in the Bible?" — tap a card to open it, tap the stars to rate it. Data loads live from our shared Google Sheet.</p>
+  <p>Audio, articles, and books for "What's in the Bible?" — pick a topic, open a resource, rate it with stars, and mark it done when you've finished it.</p>
 </header>
 
 <div id="statusBanner"></div>
@@ -282,38 +278,39 @@
 <div id="loadingMsg" class="loading-msg">Loading resource library&hellip;</div>
 
 <div id="appRoot" style="display:none;">
-  <div class="control-bar">
-    <nav class="drawer-tabs" id="drawerTabs" aria-label="Jump to lesson"></nav>
-    <div class="filter-row">
-      <div class="chip-group" id="typeChips" aria-label="Filter by resource type"></div>
-      <div class="chip-group" id="priorityChips" aria-label="Filter by priority"></div>
-      <button type="button" class="refresh-btn" id="refreshBtn">Refresh</button>
-    </div>
-    <div class="search-wrap">
-      <input type="search" id="searchBox" placeholder="Search by title, author, or speaker&hellip;" autocomplete="off">
-    </div>
+  <div class="who-bar">
+    <label for="whoInput">Reading as</label>
+    <input id="whoInput" type="text" placeholder="Your name (tracks what you've finished)" autocomplete="off">
+    <button type="button" class="refresh-btn" id="refreshBtn">Refresh</button>
   </div>
 
-  <p class="result-note" id="resultNote"></p>
-
-  <main id="main"></main>
+  <main id="view"></main>
 
   <details class="manage" id="managePanel">
-    <summary>Add &amp; import resources</summary>
+    <summary>Add a resource</summary>
     <div class="manage-body">
-
       <div class="manage-section">
         <h3>Add a resource</h3>
-        <p class="hint">Saves directly to the shared Google Sheet — everyone sees it on their next refresh.</p>
+        <p class="hint">Saves straight to the shared Google Sheet. Don't see the topic you need? Choose "+ New topic&hellip;" from the list.</p>
         <form id="addResourceForm">
           <div class="form-grid">
             <div class="full">
-              <label for="arSection">Lesson</label>
-              <select id="arSection" required></select>
+              <label for="arTopic">Topic</label>
+              <select id="arTopic"></select>
+            </div>
+            <div class="full new-topic-box" id="newTopicBox">
+              <div>
+                <label for="arNewTopicName">New topic name</label>
+                <input id="arNewTopicName" type="text" placeholder="e.g. Abraham">
+              </div>
+              <div>
+                <label for="arNewTopicSub">Subtitle (optional)</label>
+                <input id="arNewTopicSub" type="text" placeholder="e.g. Genesis 12-25">
+              </div>
             </div>
             <div>
               <label for="arType">Type</label>
-              <select id="arType" required>
+              <select id="arType">
                 <option value="Audio">Audio</option>
                 <option value="Article">Article</option>
                 <option value="Book">Book</option>
@@ -325,7 +322,7 @@
             </div>
             <div class="full">
               <label for="arTitle">Title</label>
-              <input id="arTitle" type="text" required>
+              <input id="arTitle" type="text">
             </div>
             <div>
               <label for="arAuthor">Author / Speaker</label>
@@ -358,7 +355,7 @@
             </div>
             <div class="full">
               <label for="arLink">Link</label>
-              <input id="arLink" type="url" required placeholder="https://&hellip;">
+              <input id="arLink" type="url" placeholder="https://&hellip;">
             </div>
             <div>
               <label for="arPriority">Priority</label>
@@ -380,53 +377,11 @@
           <div class="status-msg" id="arStatus"></div>
         </form>
       </div>
-
-      <div class="manage-section">
-        <h3>Add a new lesson</h3>
-        <p class="hint">Starts a new drawer for a lesson topic that hasn't been catalogued yet. It becomes permanent as soon as you save the first resource into it.</p>
-        <form id="addSectionForm">
-          <div class="form-grid">
-            <div class="full">
-              <label for="asUnit">Lesson name</label>
-              <input id="asUnit" type="text" required placeholder="e.g. Abraham">
-            </div>
-            <div class="full">
-              <label for="asLabel">Subtitle (optional)</label>
-              <input id="asLabel" type="text" placeholder="e.g. Genesis 12-25">
-            </div>
-          </div>
-          <div class="btn-row"><button type="submit" class="btn">Add lesson</button></div>
-          <div class="status-msg" id="asStatus"></div>
-        </form>
-      </div>
-
-      <div class="manage-section">
-        <h3>Import from a research pull</h3>
-        <p class="hint">Paste a JSON block (Claude can produce this directly after a research pull) to bulk-add resources to an existing or new lesson. Each one saves straight to the Sheet.</p>
-        <div class="import-example" id="importExample"></div>
-        <div class="form-grid">
-          <div class="full">
-            <label for="importText">Paste JSON here</label>
-            <textarea id="importText" style="min-height:110px;" placeholder="Paste the JSON block here&hellip;"></textarea>
-          </div>
-          <div class="full">
-            <label for="importAddedBy">Added by (applies to this whole batch)</label>
-            <input id="importAddedBy" type="text" placeholder="Your name">
-          </div>
-        </div>
-        <div class="btn-row">
-          <button type="button" class="btn" id="importBtn">Import</button>
-          <button type="button" class="btn secondary" id="copyTemplateBtn">Copy template</button>
-        </div>
-        <div class="status-msg" id="importStatus"></div>
-      </div>
-
     </div>
   </details>
 
   <footer>
-    Built from the Sunday School Master Resource Library spreadsheet — a drive-friendly companion to it, not a replacement.<br>
-    This page reads and writes live to our shared Google Sheet — additions and star ratings save immediately for everyone.
+    This page reads and writes live to our shared Google Sheet — new resources, star ratings, and "done" marks save immediately.
   </footer>
 </div>
 
@@ -435,51 +390,62 @@
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwKy7abC8OYtrKFPemCK0wWFngZQTG9ZGuAgDUwbT1c4IVjaxWmYL_z1X4rmIFFOumFyg/exec";
 
 /* ============ STATE ============ */
-let state = {sections: [], resourcesBySection: {}};
-let activeType = "All";
-let activePriority = "All";
-let searchTerm = "";
+let topics = [];          // [{id, name, subtitle}]
+let resources = [];       // flat list, each has topicId
+let progress = [];        // [{resourceId, person}]
+let doneSet = new Set();  // resource ids the current person has finished
 let passcode = "";
+let memPerson = "";
+let currentTopicId = null;
+let filters = {type: "All", priority: "All", status: "All", search: ""};
 
-const typeOrder = ["Audio","Article","Book"];
-const typeLabels = {Audio:"Audio", Article:"Articles", Book:"Books & Chapters"};
+const typeOrder = ["Audio", "Article", "Book"];
+const typeLabels = {Audio: "Audio", Article: "Articles", Book: "Books & Chapters"};
 
-function escapeHtml(s){
+const $ = id => document.getElementById(id);
+const view = $("view");
+
+/* ============ HELPERS ============ */
+function esc(s){
   return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
-function slugify(s){
-  return String(s).toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'') || 'section';
+function safeUrl(u){ return /^https?:\/\//i.test(String(u || "")) ? u : "#"; }
+function plural(n, w){ return n + " " + w + (n === 1 ? "" : "s"); }
+
+function getPerson(){
+  try{ return (localStorage.getItem("ss_person") || "").trim(); }catch(e){ return memPerson; }
 }
-function uniqueSlug(base){
-  let slug = slugify(base);
-  let n = 2;
-  const existing = new Set(state.sections.map(s => s.id));
-  while(existing.has(slug)){ slug = slugify(base) + '-' + n; n++; }
-  return slug;
+function setPerson(name){
+  memPerson = String(name).trim();
+  try{ localStorage.setItem("ss_person", memPerson); }catch(e){}
 }
-function nextAccessionNo(){ return String(state.sections.length + 1).padStart(3,'0'); }
-function currentDateLabel(){ return new Date().toLocaleString('en-US', {month:'short', year:'numeric'}); }
+function showBanner(msg){
+  const b = $("statusBanner");
+  b.textContent = msg;
+  b.style.display = "block";
+}
+function hideBanner(){ $("statusBanner").style.display = "none"; }
 
 /* ============ API ============ */
 async function apiGet(){
-  const res = await fetch(SCRIPT_URL, {cache:'no-store'});
-  if(!res.ok) throw new Error('HTTP ' + res.status);
+  const res = await fetch(SCRIPT_URL, {cache: "no-store"});
+  if(!res.ok) throw new Error("HTTP " + res.status);
   const json = await res.json();
-  if(!json.success) throw new Error(json.error || 'Unknown error loading data');
-  return json.data;
+  if(!json.success) throw new Error(json.error || "Unknown error loading data");
+  return json;
 }
 
 async function apiPost(body){
   const payload = Object.assign({passcode: passcode}, body);
   const res = await fetch(SCRIPT_URL, {
-    method: 'POST',
-    headers: {'Content-Type': 'text/plain;charset=utf-8'}, // avoids a CORS preflight Apps Script can't answer
+    method: "POST",
+    headers: {"Content-Type": "text/plain;charset=utf-8"}, // avoids a CORS preflight Apps Script can't answer
     body: JSON.stringify(payload)
   });
   const json = await res.json();
-  if(json.success === false && json.error === 'Invalid passcode'){
-    const entered = window.prompt('Enter the shared passcode to save changes:');
-    if(entered === null) return {success:false, error:'Passcode required to save.'};
+  if(json.success === false && json.error === "Invalid passcode"){
+    const entered = window.prompt("Enter the shared passcode to save changes:");
+    if(entered === null) return {success: false, error: "Passcode required to save."};
     passcode = entered;
     return apiPost(body);
   }
@@ -487,418 +453,415 @@ async function apiPost(body){
 }
 
 /* ============ LOAD ============ */
-async function loadData(){
+function ingest(data){
+  resources = (data.resources || []).filter(r => r["Section ID"]).map(r => ({
+    id: String(r["ID"]),
+    topicId: String(r["Section ID"]),
+    lessonName: String(r["Lesson"] || ""),
+    subtitle: String(r["Section Label"] || ""),
+    type: r["Type"] || "Article",
+    subtype: r["Subtype"] || "",
+    title: String(r["Title"] || ""),
+    author: String(r["Author / Speaker"] || ""),
+    tradition: String(r["Tradition"] || ""),
+    length: String(r["Length"] || ""),
+    access: String(r["Access"] || ""),
+    link: String(r["Link"] || ""),
+    priority: r["Priority"] === "Core" ? "Core" : "Supplementary",
+    subpoint: String(r["Covers (Subpoint)"] || ""),
+    lastUpdated: r["Last Updated"] == null ? "" : r["Last Updated"],
+    rating: Math.max(0, Math.min(5, Math.round(Number(r["Rating"]) || 0))),
+    addedBy: String(r["Added By"] || ""),
+    saving: false
+  }));
+
+  topics = (data.topics || []).filter(t => t["Topic ID"]).map(t => ({
+    id: String(t["Topic ID"]),
+    name: String(t["Topic Name"] || t["Topic ID"]),
+    subtitle: String(t["Subtitle"] || "")
+  }));
+  // Safety net: any topic that only exists on resource rows still shows up.
+  const known = new Set(topics.map(t => t.id));
+  resources.forEach(r => {
+    if(!known.has(r.topicId)){
+      known.add(r.topicId);
+      topics.push({id: r.topicId, name: r.lessonName || r.topicId, subtitle: r.subtitle});
+    }
+  });
+
+  progress = (data.progress || [])
+    .map(p => ({resourceId: String(p["Resource ID"] || ""), person: String(p["Person"] || "")}))
+    .filter(p => p.resourceId && p.person);
+}
+
+function recomputeDone(){
+  const me = getPerson().toLowerCase();
+  doneSet = new Set(
+    me ? progress.filter(p => p.person.trim().toLowerCase() === me).map(p => p.resourceId) : []
+  );
+}
+
+async function loadData(isRefresh){
   try{
-    const rows = await apiGet();
-    rebuildStateFromRows(rows);
-    document.getElementById('loadingMsg').style.display = 'none';
-    document.getElementById('appRoot').style.display = 'block';
-    renderAll();
+    const data = await apiGet();
+    ingest(data);
+    recomputeDone();
+    hideBanner();
+    $("loadingMsg").style.display = "none";
+    $("appRoot").style.display = "block";
+    populateTopicSelect();
+    route();
   }catch(e){
-    document.getElementById('loadingMsg').innerHTML =
-      `<div class="fetch-error">
-        <strong>Couldn't load the resource library.</strong><br><br>
-        Check that the Apps Script web app is deployed and set to "Anyone with the link."
-        <br><br><span style="font-family:'Courier Prime',monospace; font-size:11px;">${escapeHtml(e.message)}</span>
-      </div>`;
+    if(isRefresh){
+      showBanner("Couldn't refresh: " + e.message);
+    }else{
+      $("loadingMsg").innerHTML =
+        '<div class="fetch-error"><strong>Couldn\'t load the resource library.</strong><br><br>' +
+        'Check that the Apps Script web app is deployed and set to "Anyone with the link."<br><br>' +
+        '<span style="font-family:\'Courier Prime\',monospace; font-size:11px;">' + esc(e.message) + '</span></div>';
+    }
   }
 }
 
-function rebuildStateFromRows(rows){
-  const sections = [];
-  const seen = new Set();
-  const bySection = {};
-  rows.forEach(r => {
-    const sid = r['Section ID'];
-    if(!sid) return;
-    if(!seen.has(sid)){
-      seen.add(sid);
-      sections.push({
-        id: sid,
-        unit: r['Lesson'] || sid,
-        label: r['Section Label'] || '',
-        accessionNo: r['Accession No.'] || '',
-        dateAdded: r['Date Added'] || ''
-      });
-      bySection[sid] = [];
-    }
-    bySection[sid].push({
-      id: r['ID'],
-      sectionId: sid,
-      type: r['Type'] || 'Article',
-      subtype: r['Subtype'] || '',
-      title: r['Title'] || '',
-      author: r['Author / Speaker'] || '',
-      tradition: r['Tradition'] || '',
-      length: r['Length'] || '',
-      access: r['Access'] || '',
-      link: r['Link'] || '',
-      priority: r['Priority'] === 'Core' ? 'Core' : 'Supplementary',
-      subpoint: r['Covers (Subpoint)'] || '',
-      lastUpdated: r['Last Updated'] || '',
-      rating: Number(r['Rating']) || 0,
-      addedBy: r['Added By'] || ''
-    });
-  });
-  // Keep any lesson the user just created locally that hasn't received its first
-  // saved resource yet — it isn't in the Sheet, so a fresh load would otherwise drop it.
-  state.sections.filter(s => s.pendingLocal && !seen.has(s.id)).forEach(s => {
-    sections.push(s);
-    bySection[s.id] = bySection[s.id] || [];
-  });
-  state.sections = sections;
-  state.resourcesBySection = bySection;
+/* ============ ROUTING ============ */
+function route(){
+  const m = location.hash.match(/^#\/t\/(.+)$/);
+  if(m){
+    const id = decodeURIComponent(m[1]);
+    if(topics.some(t => t.id === id)){ renderTopic(id); return; }
+  }
+  renderHome();
+}
+window.addEventListener("hashchange", () => { route(); window.scrollTo(0, 0); });
+
+function refreshCurrentView(){
+  if(currentTopicId) renderTopicList(); else renderHome();
 }
 
-/* ============ RENDER ============ */
-const main = document.getElementById('main');
-const drawerTabs = document.getElementById('drawerTabs');
-const resultNote = document.getElementById('resultNote');
+/* ============ HOME: TOPIC LIST ============ */
+function topicCardHtml(t){
+  const items = resources.filter(r => r.topicId === t.id);
+  const done = items.filter(r => doneSet.has(r.id)).length;
+  const pct = items.length ? Math.round(done / items.length * 100) : 0;
+  const meta = items.length
+    ? plural(items.length, "resource") + " · " + done + " done"
+    : "No resources yet";
+  return '<a class="topic-card" href="#/t/' + encodeURIComponent(t.id) + '">' +
+    '<div class="topic-card-top"><div>' +
+      '<div class="topic-name">' + esc(t.name) + '</div>' +
+      (t.subtitle ? '<div class="topic-sub">' + esc(t.subtitle) + '</div>' : '') +
+    '</div><span class="chev">&rsaquo;</span></div>' +
+    '<div class="topic-meta">' + meta + '</div>' +
+    '<div class="bar"><div class="bar-fill" style="width:' + pct + '%"></div></div>' +
+  '</a>';
+}
+
+function renderHome(){
+  currentTopicId = null;
+  let html = '<div class="home-head"><div class="kicker">Topics</div><h2>Choose a topic</h2>' +
+    '<p>' + plural(topics.length, "topic") + ' · ' + plural(resources.length, "resource") + '</p></div>';
+  if(topics.length === 0){
+    html += '<div class="empty-note">No topics yet.<br>Open "Add a resource" below and choose "+ New topic&hellip;" to start one.</div>';
+  }else{
+    html += topics.map(topicCardHtml).join("");
+  }
+  view.innerHTML = html;
+}
+
+/* ============ TOPIC VIEW ============ */
+function buildChips(container, options, current, onSelect){
+  container.innerHTML = options.map(o =>
+    '<button type="button" class="chip" data-val="' + esc(o) + '" aria-pressed="' + (o === current) + '">' + esc(o) + '</button>'
+  ).join("");
+  container.querySelectorAll(".chip").forEach(btn => btn.addEventListener("click", () => {
+    onSelect(btn.dataset.val);
+    container.querySelectorAll(".chip").forEach(b => b.setAttribute("aria-pressed", String(b === btn)));
+    renderTopicList();
+  }));
+}
+
+function renderTopic(id){
+  const t = topics.find(x => x.id === id);
+  if(currentTopicId !== id) filters = {type: "All", priority: "All", status: "All", search: ""};
+  currentTopicId = id;
+
+  view.innerHTML =
+    '<div class="topic-head">' +
+      '<a class="back-link" href="#/">&lsaquo; All topics</a>' +
+      (t.subtitle ? '<div class="kicker">' + esc(t.subtitle) + '</div>' : '') +
+      '<h2>' + esc(t.name) + '</h2>' +
+    '</div>' +
+    '<div class="control-bar">' +
+      '<div class="filter-row">' +
+        '<div class="chip-group" id="typeChips" aria-label="Filter by type"></div>' +
+        '<div class="chip-group" id="priorityChips" aria-label="Filter by priority"></div>' +
+        '<div class="chip-group" id="statusChips" aria-label="Filter by status"></div>' +
+      '</div>' +
+      '<div class="search-wrap"><input type="search" id="searchBox" placeholder="Search by title, author, or speaker&hellip;" autocomplete="off" value="' + esc(filters.search) + '"></div>' +
+    '</div>' +
+    '<p class="result-note" id="resultNote"></p>' +
+    '<div id="topicList"></div>';
+
+  buildChips($("typeChips"), ["All", "Audio", "Article", "Book"], filters.type, v => filters.type = v);
+  buildChips($("priorityChips"), ["All", "Core", "Supplementary"], filters.priority, v => filters.priority = v);
+  buildChips($("statusChips"), ["All", "To do", "Done"], filters.status, v => filters.status = v);
+  $("searchBox").addEventListener("input", e => { filters.search = e.target.value.trim(); renderTopicList(); });
+
+  renderTopicList();
+  setAddFormTopic(id);
+}
 
 function cardHtml(r){
+  const isDone = doneSet.has(r.id);
   const pillClass = r.priority === "Core" ? "priority-pill core" : "priority-pill supp";
   const pillText = r.priority === "Core" ? "Core" : "Optional";
-  const stars = [1,2,3,4,5].map(n =>
-    `<button type="button" class="star ${n<=r.rating?'filled':''}" data-id="${escapeHtml(r.id)}" data-value="${n}" aria-label="Rate ${n} star${n>1?'s':''}">&#9733;</button>`
+  const stars = [1, 2, 3, 4, 5].map(n =>
+    '<button type="button" class="star' + (n <= r.rating ? ' filled' : '') + '" data-id="' + esc(r.id) + '" data-value="' + n +
+    '" aria-label="Rate ' + n + (n === 1 ? ' star' : ' stars') + '">&#9733;</button>'
   ).join("");
-  return `
-  <div class="card" data-type="${escapeHtml(r.type)}" data-priority="${escapeHtml(r.priority)}"
-       data-search="${escapeHtml((r.title + ' ' + r.author).toLowerCase())}">
-    <a class="card-link" href="${escapeHtml(r.link)}" target="_blank" rel="noopener">
-      <div class="card-top">
-        <div class="card-title">${escapeHtml(r.title)}<span class="arrow">&#8599;</span></div>
-        <div class="${pillClass}">${pillText}</div>
-      </div>
-      <div class="card-meta">${escapeHtml(r.author || '—')}<span class="sep">&middot;</span>${escapeHtml(r.tradition || '—')}<span class="sep">&middot;</span>${escapeHtml(r.length || '—')}<span class="sep">&middot;</span>${escapeHtml(r.access || '—')}</div>
-      ${r.subpoint ? `<div class="card-subpoint">Covers: ${escapeHtml(r.subpoint)}</div>` : ``}
-    </a>
-    <div class="card-footer">
-      <div class="star-row" role="group" aria-label="Rate this resource">${stars}</div>
-      ${r.addedBy ? `<div class="added-by">Added by ${escapeHtml(r.addedBy)}</div>` : `<div class="added-by"></div>`}
-    </div>
-  </div>`;
-}
-function drawerBodyHtml(sectionId){
-  const items = state.resourcesBySection[sectionId] || [];
-  let groups = "";
-  typeOrder.forEach(t => {
-    const group = items.filter(r => r.type === t).slice().sort((a,b) => (b.rating||0) - (a.rating||0));
-    if(group.length === 0) return;
-    groups += `<div class="subgroup-label">${typeLabels[t]}</div>` + group.map(cardHtml).join("");
-  });
-  if(!groups) groups = `<div class="drawer-empty">No resources yet — add one below.</div>`;
-  return groups;
-}
-function drawerHtml(d){
-  return `
-  <section class="drawer" id="${d.id}">
-    <div class="drawer-header">
-      <div class="drawer-header-text">
-        <div class="kicker">${escapeHtml(d.label || '')}</div>
-        <h2>${escapeHtml(d.unit)}</h2>
-      </div>
-      <div class="accession">No. ${escapeHtml(d.accessionNo)}<br>${escapeHtml(d.dateAdded)}</div>
-    </div>
-    <div class="drawer-body" id="body-${d.id}">${drawerBodyHtml(d.id)}</div>
-  </section>`;
-}
-function renderAll(){
-  main.innerHTML = state.sections.map(drawerHtml).join("");
-  drawerTabs.innerHTML = state.sections.map(d => `<a class="drawer-tab" href="#${d.id}">${escapeHtml(d.unit)}</a>`).join("");
-  populateSectionSelect();
-  applyFilters();
-}
-function rerenderDrawer(sectionId){
-  const body = document.getElementById('body-' + sectionId);
-  if(body) body.innerHTML = drawerBodyHtml(sectionId);
-  applyFilters();
-}
-function populateSectionSelect(){
-  const sel = document.getElementById('arSection');
-  const prev = sel.value;
-  sel.innerHTML = state.sections.map(s => `<option value="${escapeHtml(s.id)}">${escapeHtml(s.unit)}</option>`).join("");
-  if([...sel.options].some(o => o.value === prev)) sel.value = prev;
+  return '<div class="card' + (isDone ? ' done' : '') + '" data-type="' + esc(r.type) + '">' +
+    '<a class="card-link" href="' + esc(safeUrl(r.link)) + '" target="_blank" rel="noopener noreferrer">' +
+      '<div class="card-top">' +
+        '<div class="card-title">' + esc(r.title) + '<span class="arrow">&#8599;</span></div>' +
+        '<div class="' + pillClass + '">' + pillText + '</div>' +
+      '</div>' +
+      '<div class="card-meta">' + esc(r.author || "—") + '<span class="sep">&middot;</span>' + esc(r.tradition || "—") +
+        '<span class="sep">&middot;</span>' + esc(r.length || "—") + '<span class="sep">&middot;</span>' + esc(r.access || "—") + '</div>' +
+      (r.subpoint ? '<div class="card-subpoint">Covers: ' + esc(r.subpoint) + '</div>' : '') +
+    '</a>' +
+    '<div class="card-footer">' +
+      '<div class="star-row" role="group" aria-label="Rate this resource">' + stars + '</div>' +
+      '<button type="button" class="done-btn' + (isDone ? ' on' : '') + '" data-id="' + esc(r.id) + '" aria-pressed="' + isDone + '">' +
+        (isDone ? '&#10003; Done' : 'Mark done') + '</button>' +
+    '</div>' +
+    (r.addedBy ? '<div class="added-by">Added by ' + esc(r.addedBy) + '</div>' : '') +
+  '</div>';
 }
 
-/* ============ FILTERS ============ */
-function buildChips(container, options, current, onSelect){
-  container.innerHTML = options.map(opt => `<button type="button" class="chip" data-val="${opt}" aria-pressed="${opt===current}">${opt}</button>`).join("");
-  container.querySelectorAll('.chip').forEach(btn => {
-    btn.addEventListener('click', () => {
-      onSelect(btn.dataset.val);
-      container.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', b === btn));
-      applyFilters();
-    });
-  });
-}
-function applyFilters(){
-  const cards = document.querySelectorAll('.card');
-  let visibleCount = 0;
-  cards.forEach(card => {
-    const matchesType = activeType === "All" || card.dataset.type === activeType;
-    const matchesPriority = activePriority === "All" || card.dataset.priority === activePriority;
-    const matchesSearch = !searchTerm || card.dataset.search.includes(searchTerm);
-    const visible = matchesType && matchesPriority && matchesSearch;
-    card.style.display = visible ? "block" : "none";
-    if(visible) visibleCount++;
-  });
-  document.querySelectorAll('.subgroup-label').forEach(label => {
-    let el = label.nextElementSibling, anyVisible = false;
-    while(el && el.classList.contains('card')){
-      if(el.style.display !== "none") anyVisible = true;
-      el = el.nextElementSibling;
-    }
-    label.style.display = anyVisible ? "block" : "none";
-  });
-  resultNote.textContent = visibleCount === 1 ? "1 resource shown" : `${visibleCount} resources shown`;
-}
+function renderTopicList(){
+  const list = $("topicList");
+  if(!list) return;
+  const items = resources.filter(r => r.topicId === currentTopicId);
+  const q = filters.search.toLowerCase();
 
-/* ============ STAR RATING ============ */
-function findResourceById(id){
-  for(const sid in state.resourcesBySection){
-    const found = state.resourcesBySection[sid].find(r => r.id === id);
-    if(found) return {resource: found, sectionId: sid};
+  const visible = items.filter(r => {
+    if(filters.type !== "All" && r.type !== filters.type) return false;
+    if(filters.priority !== "All" && r.priority !== filters.priority) return false;
+    if(filters.status === "Done" && !doneSet.has(r.id)) return false;
+    if(filters.status === "To do" && doneSet.has(r.id)) return false;
+    if(q && (r.title + " " + r.author).toLowerCase().indexOf(q) === -1) return false;
+    return true;
+  });
+
+  const doneCount = items.filter(r => doneSet.has(r.id)).length;
+  $("resultNote").textContent = items.length
+    ? visible.length + " shown · " + doneCount + " of " + items.length + " done"
+    : "";
+
+  if(items.length === 0){
+    list.innerHTML = '<div class="empty-note">No resources in this topic yet.<br>Add the first one below.</div>';
+    return;
   }
-  return null;
+  if(visible.length === 0){
+    list.innerHTML = '<div class="empty-note">Nothing matches these filters.</div>';
+    return;
+  }
+
+  const extraTypes = Array.from(new Set(visible.map(r => r.type))).filter(t => typeOrder.indexOf(t) === -1);
+  let html = "";
+  typeOrder.concat(extraTypes).forEach(t => {
+    const group = visible.filter(r => r.type === t).slice().sort((a, b) => b.rating - a.rating); // highest rated first
+    if(!group.length) return;
+    html += '<div class="subgroup-label">' + esc(typeLabels[t] || t) + '</div>' + group.map(cardHtml).join("");
+  });
+  list.innerHTML = html;
 }
 
-main.addEventListener('click', (e) => {
-  const star = e.target.closest('.star');
-  if(!star) return;
-  e.preventDefault();
-  rateResource(star.dataset.id, Number(star.dataset.value));
+/* ============ STARS + DONE (event delegation) ============ */
+view.addEventListener("click", e => {
+  const star = e.target.closest(".star");
+  if(star){
+    e.preventDefault();
+    rateResource(star.dataset.id, Number(star.dataset.value));
+    return;
+  }
+  const doneBtn = e.target.closest(".done-btn");
+  if(doneBtn){
+    e.preventDefault();
+    toggleDone(doneBtn.dataset.id);
+  }
 });
 
 async function rateResource(id, value){
-  const found = findResourceById(id);
-  if(!found) return;
-  const { resource, sectionId } = found;
-  const prevValue = resource.rating;
-  const newValue = resource.rating === value ? 0 : value; // tap the same star again to clear it
-  resource.rating = newValue;
-  rerenderDrawer(sectionId);
+  const r = resources.find(x => x.id === id);
+  if(!r || r.saving) return;
+  const prev = r.rating;
+  r.rating = r.rating === value ? 0 : value; // tap the same star again to clear it
+  r.saving = true;
+  renderTopicList();
   try{
-    const result = await apiPost({
-      action: 'edit',
-      id: resource.id,
-      expectedLastUpdated: resource.lastUpdated,
-      data: {'Rating': newValue}
-    });
+    const result = await apiPost({action: "edit", id: r.id, expectedLastUpdated: r.lastUpdated, data: {"Rating": r.rating}});
     if(!result.success){
-      if(result.error === 'conflict'){
-        await loadData(); // someone else changed this row — resync from the source of truth
-      } else {
-        resource.rating = prevValue;
-        rerenderDrawer(sectionId);
+      r.saving = false;
+      if(result.error === "conflict"){
+        await loadData(true); // someone else changed it — resync from the Sheet
+      }else{
+        r.rating = prev;
+        renderTopicList();
+        showBanner("Couldn't save that rating: " + (result.error || "unknown error"));
       }
       return;
     }
-    resource.lastUpdated = result.lastUpdated;
+    r.lastUpdated = result.lastUpdated;
+    r.saving = false;
   }catch(err){
-    resource.rating = prevValue;
-    rerenderDrawer(sectionId);
+    r.saving = false;
+    r.rating = prev;
+    renderTopicList();
+    showBanner("Couldn't save that rating: " + err.message);
   }
 }
+
+function applyDoneLocal(id, person, done){
+  const me = person.trim().toLowerCase();
+  progress = progress.filter(p => !(p.resourceId === id && p.person.trim().toLowerCase() === me));
+  if(done) progress.push({resourceId: id, person: person});
+  recomputeDone();
+}
+
+async function toggleDone(id){
+  let person = getPerson();
+  if(!person){
+    const entered = window.prompt("What name should your progress be saved under?");
+    if(!entered || !entered.trim()) return;
+    setPerson(entered);
+    person = getPerson();
+    $("whoInput").value = person;
+    recomputeDone();
+  }
+  const wasDone = doneSet.has(id);
+  applyDoneLocal(id, person, !wasDone);
+  refreshCurrentView();
+  try{
+    const result = await apiPost({action: wasDone ? "uncomplete" : "complete", resourceId: id, person: person});
+    if(!result.success) throw new Error(result.error || "unknown error");
+    hideBanner();
+  }catch(err){
+    applyDoneLocal(id, person, wasDone);
+    refreshCurrentView();
+    showBanner("Couldn't save that change: " + err.message);
+  }
+}
+
+/* ============ WHO / REFRESH ============ */
+$("whoInput").value = getPerson();
+$("whoInput").addEventListener("change", e => {
+  setPerson(e.target.value);
+  recomputeDone();
+  refreshCurrentView();
+});
+$("refreshBtn").addEventListener("click", async () => {
+  const btn = $("refreshBtn");
+  btn.textContent = "Refreshing…";
+  btn.disabled = true;
+  await loadData(true);
+  btn.textContent = "Refresh";
+  btn.disabled = false;
+});
 
 /* ============ ADD RESOURCE ============ */
-document.getElementById('addResourceForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const sectionId = document.getElementById('arSection').value;
-  const section = state.sections.find(s => s.id === sectionId);
-  const statusEl = document.getElementById('arStatus');
-  const submitBtn = document.getElementById('arSubmitBtn');
-  const title = document.getElementById('arTitle').value.trim();
-  const link = document.getElementById('arLink').value.trim();
+function populateTopicSelect(){
+  const sel = $("arTopic");
+  const prev = sel.value;
+  sel.innerHTML = topics.map(t => '<option value="' + esc(t.id) + '">' + esc(t.name) + '</option>').join("") +
+    '<option value="__new__">+ New topic&hellip;</option>';
+  if(Array.prototype.some.call(sel.options, o => o.value === prev)) sel.value = prev;
+  else sel.value = topics.length ? topics[0].id : "__new__";
+  toggleNewTopic();
+}
+function toggleNewTopic(){
+  $("newTopicBox").classList.toggle("show", $("arTopic").value === "__new__");
+}
+function setAddFormTopic(id){
+  const sel = $("arTopic");
+  if(Array.prototype.some.call(sel.options, o => o.value === id)) sel.value = id;
+  toggleNewTopic();
+}
+$("arTopic").addEventListener("change", toggleNewTopic);
 
-  if(!title || !link || !section){
-    statusEl.textContent = "Title, link, and lesson are required.";
-    statusEl.className = "status-msg error";
-    return;
-  }
-
-  const data = {
-    'Section ID': section.id,
-    'Lesson': section.unit,
-    'Section Label': section.label || '',
-    'Accession No.': section.accessionNo || '',
-    'Date Added': section.dateAdded || currentDateLabel(),
-    'Type': document.getElementById('arType').value,
-    'Subtype': document.getElementById('arSubtype').value.trim(),
-    'Title': title,
-    'Author / Speaker': document.getElementById('arAuthor').value.trim(),
-    'Tradition': document.getElementById('arTradition').value,
-    'Length': document.getElementById('arLength').value.trim(),
-    'Access': document.getElementById('arAccess').value,
-    'Link': link,
-    'Priority': document.getElementById('arPriority').value,
-    'Covers (Subpoint)': document.getElementById('arSubpoint').value.trim(),
-    'Rating': 0,
-    'Added By': document.getElementById('arAddedBy').value.trim()
-  };
-
-  submitBtn.disabled = true;
-  statusEl.textContent = "Saving…";
-  statusEl.className = "status-msg";
-  try{
-    const result = await apiPost({action: 'add', data});
-    if(!result.success) throw new Error(result.error || 'Save failed');
-    await loadData();
-    statusEl.textContent = `Added to "${section.unit}" and saved.`;
-    statusEl.className = "status-msg";
-    e.target.reset();
-  }catch(err){
-    statusEl.textContent = "Couldn't save: " + err.message;
-    statusEl.className = "status-msg error";
-  }finally{
-    submitBtn.disabled = false;
-  }
-});
-
-/* ============ ADD SECTION (local until first resource saves) ============ */
-document.getElementById('addSectionForm').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const unit = document.getElementById('asUnit').value.trim();
-  const label = document.getElementById('asLabel').value.trim();
-  const statusEl = document.getElementById('asStatus');
-  if(!unit){
-    statusEl.textContent = "Lesson name is required.";
-    statusEl.className = "status-msg error";
-    return;
-  }
-  if(state.sections.find(s => s.unit.toLowerCase() === unit.toLowerCase())){
-    statusEl.textContent = `"${unit}" already exists.`;
-    statusEl.className = "status-msg error";
-    return;
-  }
-  const id = uniqueSlug(unit);
-  state.sections.push({id, unit, label, accessionNo: nextAccessionNo(), dateAdded: currentDateLabel(), pendingLocal: true});
-  state.resourcesBySection[id] = [];
-  renderAll();
-  statusEl.textContent = `"${unit}" added. Save a resource into it below to make it permanent.`;
-  statusEl.className = "status-msg";
-  e.target.reset();
-});
-
-/* ============ IMPORT ============ */
-const importTemplate = {
-  section: "Abraham",
-  resources: [
-    {type:"Audio", subtype:"Podcast", title:"Example episode title", author:"Speaker name", tradition:"Reformed", length:"45 min", access:"Free", link:"https://example.com/episode", priority:"Core", subpoint:"Which subpoint this covers"}
-  ]
-};
-document.getElementById('importExample').textContent = JSON.stringify(importTemplate, null, 2);
-
-document.getElementById('copyTemplateBtn').addEventListener('click', () => {
-  const text = JSON.stringify(importTemplate, null, 2);
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(() => {
-      const el = document.getElementById('importStatus');
-      el.textContent = "Template copied.";
-      el.className = "status-msg";
-    }).catch(() => fallbackCopy(text));
-  } else {
-    fallbackCopy(text);
-  }
-});
-function fallbackCopy(text){
-  document.getElementById('importText').value = text;
-  const el = document.getElementById('importStatus');
-  el.textContent = "Couldn't access the clipboard — template pasted into the box instead.";
-  el.className = "status-msg";
+function setStatus(msg, isError){
+  const el = $("arStatus");
+  el.textContent = msg;
+  el.className = isError ? "status-msg error" : "status-msg";
 }
 
-document.getElementById('importBtn').addEventListener('click', async () => {
-  const statusEl = document.getElementById('importStatus');
-  const importBtn = document.getElementById('importBtn');
-  const raw = document.getElementById('importText').value.trim();
-  const addedBy = document.getElementById('importAddedBy').value.trim();
+$("addResourceForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const btn = $("arSubmitBtn");
+  const title = $("arTitle").value.trim();
+  const link = $("arLink").value.trim();
+  const choice = $("arTopic").value;
+  const addedBy = $("arAddedBy").value.trim() || getPerson();
 
-  if(!raw){
-    statusEl.textContent = "Paste a JSON block first.";
-    statusEl.className = "status-msg error";
-    return;
-  }
-  let parsed;
-  try{ parsed = JSON.parse(raw); }
-  catch(e){
-    statusEl.textContent = "That doesn't look like valid JSON — check for a missing comma or bracket.";
-    statusEl.className = "status-msg error";
-    return;
-  }
-  if(Array.isArray(parsed)){
-    statusEl.textContent = "This format needs a \"section\" name — see the template above.";
-    statusEl.className = "status-msg error";
-    return;
-  }
-  const sectionName = parsed.section;
-  const resourcesToAdd = parsed.resources;
-  if(!sectionName || !Array.isArray(resourcesToAdd) || resourcesToAdd.length === 0){
-    statusEl.textContent = "JSON needs a \"section\" name and a non-empty \"resources\" array.";
-    statusEl.className = "status-msg error";
-    return;
-  }
+  if(!title || !link){ setStatus("Title and link are required.", true); return; }
+  if(!/^https?:\/\//i.test(link)){ setStatus("The link needs to start with http:// or https://", true); return; }
 
-  let section = state.sections.find(s => s.unit.toLowerCase() === sectionName.toLowerCase());
-  if(!section){
-    const id = uniqueSlug(sectionName);
-    section = {id, unit: sectionName, label:"", accessionNo: nextAccessionNo(), dateAdded: currentDateLabel(), pendingLocal: true};
-    state.sections.push(section);
-    state.resourcesBySection[section.id] = [];
-    renderAll();
-  }
-
-  importBtn.disabled = true;
-  let added = 0, skipped = 0, failed = 0;
-  for(const r of resourcesToAdd){
-    if(!r || !r.title || !r.link){ skipped++; continue; }
-    statusEl.textContent = `Saving ${added + skipped + failed + 1} of ${resourcesToAdd.length}…`;
-    statusEl.className = "status-msg";
-    const data = {
-      'Section ID': section.id,
-      'Lesson': section.unit,
-      'Section Label': section.label || '',
-      'Accession No.': section.accessionNo || '',
-      'Date Added': section.dateAdded || currentDateLabel(),
-      'Type': r.type || 'Article',
-      'Subtype': r.subtype || '',
-      'Title': r.title,
-      'Author / Speaker': r.author || '',
-      'Tradition': r.tradition || 'Other',
-      'Length': r.length || '',
-      'Access': r.access || '',
-      'Link': r.link,
-      'Priority': r.priority === 'Core' ? 'Core' : 'Supplementary',
-      'Covers (Subpoint)': r.subpoint || '',
-      'Rating': 0,
-      'Added By': addedBy
-    };
-    try{
-      const result = await apiPost({action: 'add', data});
-      if(result.success) added++; else failed++;
-    }catch(e){
-      failed++;
+  let topic = null;
+  let createdTopic = false;
+  btn.disabled = true;
+  setStatus("Saving…", false);
+  try{
+    if(choice === "__new__"){
+      const name = $("arNewTopicName").value.trim();
+      if(!name) throw new Error("Give the new topic a name.");
+      const tr = await apiPost({action: "addTopic", data: {name: name, subtitle: $("arNewTopicSub").value.trim(), createdBy: addedBy}});
+      if(!tr.success) throw new Error(tr.error || "Couldn't create the topic");
+      topic = tr.topic;
+      createdTopic = true;
+    }else{
+      topic = topics.find(t => t.id === choice);
+      if(!topic) throw new Error("Pick a topic.");
     }
-  }
 
-  await loadData();
-  importBtn.disabled = false;
-  statusEl.textContent = `Imported ${added} resource${added===1?'':'s'} into "${section.unit}"${skipped ? ` (${skipped} skipped — missing title or link)` : ''}${failed ? ` (${failed} failed to save — try again)` : ''}.`;
-  statusEl.className = failed ? "status-msg error" : "status-msg";
-  document.getElementById('importText').value = "";
+    const data = {
+      "Section ID": topic.id,
+      "Lesson": topic.name,
+      "Section Label": topic.subtitle || "",
+      "Type": $("arType").value,
+      "Subtype": $("arSubtype").value.trim(),
+      "Title": title,
+      "Author / Speaker": $("arAuthor").value.trim(),
+      "Tradition": $("arTradition").value,
+      "Length": $("arLength").value.trim(),
+      "Access": $("arAccess").value,
+      "Link": link,
+      "Priority": $("arPriority").value,
+      "Covers (Subpoint)": $("arSubpoint").value.trim(),
+      "Rating": 0,
+      "Added By": addedBy
+    };
+    const result = await apiPost({action: "add", data: data});
+    if(!result.success) throw new Error(result.error || "Save failed");
+
+    $("addResourceForm").reset();
+    await loadData(true);
+    setAddFormTopic(topic.id);
+    $("arAddedBy").value = addedBy;
+    setStatus('Added to "' + topic.name + '".', false);
+  }catch(err){
+    if(createdTopic && topic){
+      await loadData(true);       // the topic was created even though the resource wasn't — show it in the list
+      setAddFormTopic(topic.id);
+    }
+    setStatus("Couldn't save: " + err.message, true);
+  }finally{
+    btn.disabled = false;
+  }
 });
 
 /* ============ INIT ============ */
-buildChips(document.getElementById('typeChips'), ["All","Audio","Article","Book"], activeType, v => activeType = v);
-buildChips(document.getElementById('priorityChips'), ["All","Core","Supplementary"], activePriority, v => activePriority = v);
-document.getElementById('searchBox').addEventListener('input', e => { searchTerm = e.target.value.trim().toLowerCase(); applyFilters(); });
-document.getElementById('refreshBtn').addEventListener('click', () => {
-  document.getElementById('loadingMsg').style.display = 'block';
-  document.getElementById('appRoot').style.display = 'none';
-  loadData();
-});
-
-loadData();
+$("arAddedBy").value = getPerson();
+loadData(false);
 </script>
 </body>
 </html>
- 
